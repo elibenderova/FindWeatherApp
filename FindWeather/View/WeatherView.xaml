@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:view="clr-namespace:FindWeather.View" xmlns:viewmodel="clr-namespace:FindWeather.ViewModel" x:DataType="viewmodel:WeatherViewModel"
+             x:Class="FindWeather.View.WeatherView"
+             Title="Weather">
+    <StackLayout Padding="10" Spacing="10">
+        <Entry Placeholder="Enter a city name" Text="{Binding Location}">
+            <Entry.Triggers>
+                <DataTrigger TargetType="Entry"
+                             Binding="{Binding UseCurrentLocation}"
+                             Value="true">
+                    <Setter Property="IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Entry.Triggers>
+        </Entry>
+
+        <StackLayout Orientation="Horizontal" Spacing="10">
+            <Label Text="Do you want to use your current location?" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="Black"/>
+            <Switch OnColor="LightSalmon" IsToggled="{Binding UseCurrentLocation}"/>
+        </StackLayout>
+
+        <Button Text="Get Weather" BackgroundColor="LightSalmon" TextColor="Black" Command="{Binding GetWeatherCommand}"/>
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="{Binding IsBusy}"/>
+
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Image Source="temperatureHalf.png" HeightRequest="100" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            <Label x:Name="temperatureText" Text="{Binding Temp}" TextColor="LightSalmon" FontSize="42" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <Label Text="Temperature" TextColor="Black" Margin="0,-5,0,0" FontSize="30" HorizontalOptions="Center"/>
+        </StackLayout>
+
+        <Grid WidthRequest="320" ColumnSpacing="10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                <Image Source="temperatureDown.png" HeightRequest="25" HorizontalOptions="Center"/>
+                <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="minTemperatureText" Text="{Binding MinTemp}" TextColor="LightSalmon" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text="Min Temp" TextColor="Black" Margin="0,-5,0,0" FontSize="14" HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                <Image Source="temperatureUp.png" HeightRequest="25" HorizontalOptions="Center"/>
+                <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="maxTemperatureText" Text="{Binding MaxTemp}" TextColor="LightSalmon" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text="Max Temp" TextColor="Black" Margin="0,-5,0,0" FontSize="14" HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                <Image Source="wind.png" HeightRequest="25" HorizontalOptions="Center"/>
+                <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="windText" Text="{Binding Wind}" TextColor="LightSalmon" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text="Wind" TextColor="Black" Margin="0,-5,0,0" FontSize="14" HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                <Image Source="cloud.png" HeightRequest="25" HorizontalOptions="Center"/>
+                <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
+                    <Label x:Name="cloudText" Text="{Binding Cloud}" TextColor="LightSalmon" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text="Cloud" TextColor="Black" Margin="0,-5,0,0" FontSize="14" HorizontalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>

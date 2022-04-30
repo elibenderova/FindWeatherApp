@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:FindWeather.View"
+            xmlns:viewmodels="clr-namespace:FindWeather.ViewModel"
+            x:Class="FindWeather.View.MainView"
+            Title="Find Weather"
+            BackgroundColor="BlanchedAlmond"
+            BarBackgroundColor="LightSalmon"
+            BarTextColor="Black">
+
+    <TabbedPage.BindingContext>
+        <viewmodels:WeatherViewModel/>
+    </TabbedPage.BindingContext>
+
+    <views:WeatherView/>
+    <views:ForecastView/>
+
+</TabbedPage>
